@@ -24,5 +24,20 @@ namespace AssessmentTests
             //assert
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void AbsoluteURIFail()
+        {
+            //setup
+            bool not_expected = true;
+            string uri = "https://app.test.com/auth/logincallback";
+            IEnumerable<string> rules = new List<string>(new[] {
+        "https://app.confirmit.com/auth/logincallback"
+      });
+
+            bool result = UriValidators.Validate(uri, rules);
+
+            Assert.AreNotEqual(not_expected, result);
+        }
     }
 }
