@@ -39,5 +39,19 @@ namespace AssessmentTests
 
             Assert.AreNotEqual(not_expected, result);
         }
+
+        [TestMethod]
+        public void WildcardURISuccess1()
+        {
+            bool expected = true;
+            string uri = "https://www.confirmit.com/www/logincallback";
+            IEnumerable<string> rules = new List<string>(new[] {
+        "https://*.confirmit.com/*/logincallback"
+      });
+
+            bool result = UriValidators.Validate(uri, rules);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
