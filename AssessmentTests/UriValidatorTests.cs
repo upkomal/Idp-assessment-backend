@@ -66,5 +66,18 @@ namespace AssessmentTests
 
       Assert.AreEqual(expected, result);
     }
+
+        [TestMethod]
+    public void RegexURIFail1() {
+      bool not_expected = true;
+      string uri = "https://www.confirmit.com/logincallback";
+      IEnumerable<string> rules = new List<string>(new[] {
+        @"@https:\/\/[\w]+.confirmit\.com\/[\w]+\/logincallback"
+      });
+
+      bool result = UriValidators.Validate(uri, rules);
+
+      Assert.AreNotEqual(not_expected, result);
+    }
     }
 }
